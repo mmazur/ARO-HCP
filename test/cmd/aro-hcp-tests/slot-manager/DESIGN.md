@@ -418,7 +418,7 @@ asset's readiness. It does not protect against concurrent external writers.
 ### Admission timeout
 
 All asset admission handlers share a configurable time budget, defaulting to
-10 minutes, separate from the lease acquisition and release timeouts.
+15 minutes, separate from the lease acquisition and release timeouts.
 
 ### Emergency admission opt-out
 

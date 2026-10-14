@@ -41,7 +41,7 @@ import (
 const (
 	DefaultLeaseWaitInterval = 1 * time.Minute
 	DefaultMaxWaitForLease   = 30 * time.Minute
-	DefaultAdmissionTimeout  = 10 * time.Minute
+	DefaultAdmissionTimeout  = 15 * time.Minute
 )
 
 func DefaultAcquireOptions() *RawAcquireOptions {
@@ -144,7 +144,7 @@ func BindAcquireOptions(opts *RawAcquireOptions, cmd *cobra.Command) error {
 	cmd.Flags().StringVar(&opts.SharedDir, "shared-dir", opts.SharedDir, "Path to SHARED_DIR")
 	cmd.Flags().StringVar(&opts.CatalogPath, "slot-catalog", opts.CatalogPath, "Path to the canonical E2E slot catalog")
 	cmd.Flags().StringSliceVar(&opts.DisabledAssetAdmission, "disable-asset-admission", opts.DisabledAssetAdmission, "Emergency opt-out of admission for named asset kinds (repeatable or comma-separated). All other assets remain admitted. Defaults from ARO_HCP_DISABLE_ASSET_ADMISSION.")
-	cmd.Flags().StringVar(&opts.AdmissionTimeout, "admission-timeout", opts.AdmissionTimeout, "Maximum duration for the entire asset admission phase (e.g. 20m). Defaults from ARO_HCP_ADMISSION_TIMEOUT, or 10m when unset.")
+	cmd.Flags().StringVar(&opts.AdmissionTimeout, "admission-timeout", opts.AdmissionTimeout, "Maximum duration for the entire asset admission phase (e.g. 20m). Defaults from ARO_HCP_ADMISSION_TIMEOUT, or 15m when unset.")
 	cmd.Flags().StringVar(&opts.LeaseProxyServerURL, "lease-proxy-server-url", opts.LeaseProxyServerURL, "Lease proxy server URL")
 	cmd.Flags().DurationVar(&opts.LeaseProxyTimeout, "lease-proxy-timeout", opts.LeaseProxyTimeout, "Maximum time to spend probing a single candidate pool, including retryable proxy/network retries.")
 	cmd.Flags().DurationVar(&opts.MaxWaitForLease, "max-wait-for-lease", opts.MaxWaitForLease, "Maximum total time to keep retrying after full candidate-pool passes yield no immediate lease. Zero waits forever.")

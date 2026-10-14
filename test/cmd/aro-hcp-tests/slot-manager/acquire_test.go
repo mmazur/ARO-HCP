@@ -73,12 +73,12 @@ func TestAcquireAdmissionTimeoutFlagAndEnvironment(t *testing.T) {
 		want      time.Duration
 		wantError bool
 	}{
-		{name: "default", want: 10 * time.Minute},
+		{name: "default", want: 15 * time.Minute},
 		{name: "environment", env: " 25m ", want: 25 * time.Minute},
 		{name: "flag", flags: []string{"--admission-timeout=30m"}, want: 30 * time.Minute},
 		{name: "flag overrides environment", env: "25m", flags: []string{"--admission-timeout=12m"}, want: 12 * time.Minute},
 		{name: "flag overrides invalid environment", env: "bad", flags: []string{"--admission-timeout=12m"}, want: 12 * time.Minute},
-		{name: "empty flag resets default", env: "25m", flags: []string{"--admission-timeout="}, want: 10 * time.Minute},
+		{name: "empty flag resets default", env: "25m", flags: []string{"--admission-timeout="}, want: 15 * time.Minute},
 		{name: "zero", flags: []string{"--admission-timeout=0s"}, wantError: true},
 		{name: "negative", flags: []string{"--admission-timeout=-1m"}, wantError: true},
 		{name: "missing unit", flags: []string{"--admission-timeout=20"}, wantError: true},
